@@ -12,4 +12,5 @@ int calc_len(char *str);
 char **split_input(char *str);
 int check_builtins(char *command, char **envp);
 void _print_env(char **env);
+void _exec_me(char **cmd);
 #endif
