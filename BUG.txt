@@ -1,0 +1,3 @@
+/bin/ls -l -h /tmp
+TAB + command not working
+multiple output if command is coming from file
