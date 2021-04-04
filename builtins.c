@@ -1,5 +1,20 @@
 #include "shell.h"
 /**
+ * _print_env - print the env variable
+ * @env: environment variables to print
+ * Return: void
+**/
+void _print_env(char **env)
+{
+	int i = 0;
+
+	while (*(env + i))
+	{
+		printf("%s\n", *(env + i));
+		i++;
+	}
+}
+/**
  * check_builtins - check if the command is builtin
  * @command: first string in the array of chars
  * @envp: environment variables to use in some functions
@@ -11,10 +26,17 @@
 int check_builtins(char *command, char **envp)
 {
 	int check = -1;
-	(void)envp;
+
 	if (strcmp(command, "exit") == 0)
 	{
+
 		exit(98);
+	}
+	if (strcmp(command, "env") == 0)
+	{
+
+		_print_env(envp);
+		check = 1;
 	}
 	return (check);
 }

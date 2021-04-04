@@ -51,7 +51,7 @@ char **split_input(char *str)
 	words = malloc((total_words + 1) * sizeof(char *));
 	if (words == 0)
 		return (NULL);
-	for (i = 0; *(str + i) != '\0' && *(str + i) != '\n' &&  b < total_words; i++)
+	for (i = 0; *(str + i) != '\0' &&  b < total_words; i++)
 	{
 		if (*(str + i) == ' ')
 			str++;
