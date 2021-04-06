@@ -49,7 +49,7 @@ int main(int argc, char **argv, char **env)
 	char *lineptr;
 	char **cmd;
 	int int_mode = 5;
-	int is_builtin;
+	int is_builtin, is_path;
 	int status;
 	
 	(void)argv;
@@ -63,6 +63,11 @@ int main(int argc, char **argv, char **env)
 			printf("$ ");
 		}
 		getline(&lineptr, &n, stdin);
+		if (*lineptr == '\000')
+		{
+			printf("\n");
+			exit(98);
+		}
 		/* without this entering just a new line will trigger a segfault */
 		if (*lineptr != '\n')
 		{
@@ -74,7 +79,9 @@ int main(int argc, char **argv, char **env)
 			{
 				status = _exec_me(cmd);
 			}
-			free(cmd);
+			is_path = check_path(lineptr, env);
+			if(is_path == -1)
+				printf("error");
 		}
 	}
 	return (status);

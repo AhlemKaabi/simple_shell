@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <string.h>
 #include <signal.h>
 
@@ -14,6 +15,12 @@ int check_builtins(char **command, char **envp);
 void _print_env(char **env);
 int _exec_me(char **cmd);
 void signal_handler(int sig);
+/*PATH*/
+char *find_path(char **env);
+char *memory_work(char *directories, char *command);
+char *add_user_command(char *cmd_line, char **_path_splitted);
+void check_command_line(char **command_line_splitted)
+int check_path(char *lineptr, char **env);
 
 /* string manipulation functions */
 int _strncmp(char *s1, char *s2);
