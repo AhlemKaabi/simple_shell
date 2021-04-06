@@ -19,7 +19,7 @@ void signal_handler(int sig);
 char *find_path(char **env);
 char *memory_work(char *directories, char *command);
 char *add_user_command(char *cmd_line, char **_path_splitted);
-void check_command_line(char **command_line_splitted)
+void check_command_line(char **command_line_splitted);
 int check_path(char *lineptr, char **env);
 
 /* string manipulation functions */
