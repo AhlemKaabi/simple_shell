@@ -1,12 +1,11 @@
 #include "shell.h"
-#define Delimiters " \t\r\n"
 /**
  * split_input - function that splits string into array of string
  * @str: string being passed
  * Return:	array that hold the strings splitted
  *			this splits based on defined delimiters
 */
-char **split_input(char *str)
+char **split_input(char *str, char *Delimiters)
 {
 	/* use a duplicated string to not mess with the original */
 	char *duplicated;

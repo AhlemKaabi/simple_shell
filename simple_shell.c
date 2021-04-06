@@ -51,7 +51,7 @@ int main(int argc, char **argv, char **env)
 	int int_mode = 5;
 	int is_builtin;
 	int status;
-
+	
 	(void)argv;
 	(void)argc;
 	signal(SIGINT, signal_handler);
@@ -66,7 +66,8 @@ int main(int argc, char **argv, char **env)
 		/* without this entering just a new line will trigger a segfault */
 		if (*lineptr != '\n')
 		{
-			cmd = split_input(lineptr);
+			cmd = split_input(lineptr," \t\r\n");
+			/* make a function that will check for alias, builtins, PATH */
 			is_builtin = check_builtins(cmd, env);
 			/* only fork and exec if the input is not a builtin command */
 			if (is_builtin == -1)
