@@ -1,5 +1,5 @@
 #include "shell.h"
-int check_builtins(char *command, char **envp);
+int check_builtins(char **command, char **envp);
 
 void _exec_me(char **cmd)
 {
@@ -8,6 +8,7 @@ void _exec_me(char **cmd)
 		if (execve(cmd[0], cmd, NULL) == -1)
 		{
 			perror("Error:");
+			exit(98);
 		}
 	}
 	wait(NULL);
@@ -39,14 +40,17 @@ int main(int argc, char **argv, char **env)
 			printf("$ ");
 		}
 		getline(&lineptr, &n, stdin);
-		cmd = split_input(lineptr);
-		is_builtin = check_builtins(cmd[0], env);
-		/* only fork and exec if the input is not a builtin command */
-		if (is_builtin == -1)
+		/* without this entering just a new line will trigger a segfault */
+		if (*lineptr != '\n')
 		{
-			_exec_me(cmd);
+			cmd = split_input(lineptr);
+			is_builtin = check_builtins(cmd, env);
+			/* only fork and exec if the input is not a builtin command */
+			if (is_builtin == -1)
+			{
+				_exec_me(cmd);
+			}
+			free(cmd);
 		}
-		free(lineptr);
-		free(cmd);
 	}
 }

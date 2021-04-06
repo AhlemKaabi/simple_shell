@@ -17,8 +17,8 @@ char **split_input(char *str)
 	/* if allocation fail */
 	if (!words_array)
 	{
-		printf("Allocation error\n");
-		exit(98);
+		perror("Allocation error\n");
+		exit(0);
 	}
 	duplicated = strdup(str);
 	word = strtok(duplicated, Delimiters);
@@ -34,8 +34,8 @@ char **split_input(char *str)
 			/* check allocation error */
 			if (!words_array)
 			{
-				printf("Allocation error\n");
-				exit(98);
+				perror("Allocation error\n");
+				exit(0);
 			}
 		}
 		word = strtok(NULL, Delimiters);

@@ -23,16 +23,15 @@ void _print_env(char **env)
  *			this means that the command is a system binaries
  *			if check is changed to 1 we don't need to fork and exec
 **/
-int check_builtins(char *command, char **envp)
+int check_builtins(char **command, char **envp)
 {
 	int check = -1;
 
-	if (strcmp(command, "exit") == 0)
+	if (_strncmp(command[0], "exit") == 0)
 	{
-
-		exit(98);
+		exit(0);
 	}
-	if (strcmp(command, "env") == 0)
+	if (_strncmp(command[0], "env") == 0)
 	{
 
 		_print_env(envp);
