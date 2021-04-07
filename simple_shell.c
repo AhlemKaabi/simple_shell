@@ -9,6 +9,7 @@ int check_builtins(char **command, char **envp);
 void signal_handler(int sig)
 {
 	int er;
+
 	if (sig == SIGINT)
 	{
 		printf("\n$ ");
@@ -24,6 +25,8 @@ void signal_handler(int sig)
 /**
  * _exec_me - function that will fork and execute command
  * @cmd: array of chars holding the command and arguments
+ * @program_name: argv[0].
+ * @count: command count.
  * Return:	void
 **/
 int _exec_me(char **cmd, char *program_name, int count)
@@ -77,7 +80,7 @@ int main(int argc, char **argv, char **env)
 		}
 		if (*lineptr != '\n')
 		{
-			cmd = split_input(lineptr," \t\r\n");
+			cmd = split_input(lineptr, " \t\r\n");
 			/* make a function that will check for alias, builtins, PATH */
 			is_builtin = check_builtins(cmd, env);
 			/* only fork and exec if the input is not a builtin command */

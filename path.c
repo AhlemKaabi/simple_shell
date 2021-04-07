@@ -1,10 +1,14 @@
 #include "shell.h"
-/* extract the Path environment variable */
+/**
+ * find_path - function that extacts the PATH variable.
+ * @env: the environment variables.
+ * Return: string that holds the environment variable PATH.
+ */
 char *find_path(char **env)
 {
 	char *path = "PATH=";
 	int i, j;
-	char *test = "just to pass gcc";
+
 	for (i = 0; env[i] != NULL; i++)
 	{
 		for (j = 0; j < 5 ; j++)
@@ -15,23 +19,29 @@ char *find_path(char **env)
 			}
 			if (j == 4)
 			{
-				return(env[i]);
+				return (env[i]);
 			}
 		}
 	}
-	return (test);
+	return (NULL);
 }
-
-/*modify directories path*/
+/**
+ * memory_work - function that copy each directory and
+ * the command line into a new allocated space .
+ * @directories: PATH splitted by ':'.
+ * @command: the input command line.
+ * Return: directory concatenated with the command line input.
+ */
 char *memory_work(char *directories, char *command)
 {
 	char *look_here;
 	int i = 0;
 	int j = 0;
+	int command_len, directory_len, total_len;
 
-	int command_len = strlen(command);
-	int directory_len = strlen(directories);
-	int total_len = directory_len + command_len + 1;
+	command_len = strlen(command);
+	directory_len = strlen(directories);
+	total_len = directory_len + command_len + 1;
 	look_here = malloc(sizeof(char) * total_len);
 	while (j < total_len)
 	{
@@ -50,19 +60,26 @@ char *memory_work(char *directories, char *command)
 	}
 	return (look_here);
 }
-
-/*add user command line to the splitted path*/
+/**
+ * add_user_command - 1- adds the user command to the path
+ * 2- check if the directory + command exist.
+ * @cmd_line: the input command line.
+ * @_path_splitted: PATH splitted by ':'.
+ * @count: command count.
+ * Return: 1 if the command exist
+ */
 int add_user_command(char *cmd_line, char **_path_splitted, int count)
 {
 	int i = 0;
 	char *command_line;
 	struct stat st;
 	int exists_dir;
+	char **command_line_splitted;
 
-	while ( _path_splitted[i] != NULL)
+	while (_path_splitted[i] != NULL)
 	{
 		command_line = memory_work(_path_splitted[i], cmd_line);
-		char **command_line_splitted = split_input(command_line, " \n");
+		command_line_splitted = split_input(command_line, " \n");
 		exists_dir = stat(command_line_splitted[0], &st);
 		if (exists_dir == 0)
 		{
@@ -73,15 +90,24 @@ int add_user_command(char *cmd_line, char **_path_splitted, int count)
 	}
 	return (-1);
 }
-
-/*check path executed or not*/
+/**
+ * check_path - function that checks if the command exist in PATH
+ * @lineptr: the input command line.
+ * @env: the environment variables.
+ * @count: command count.
+ * Return: found or not.
+ */
 int check_path(char *lineptr, char **env, int count)
 {
-	char *PATH = find_path(env);
-	char **PATH_splitted = split_input(PATH + 5, ":");
-	int ret = add_user_command(lineptr, PATH_splitted, count);
-	if(ret == 1)
-		return(1);
+	char *PATH;
+	char **PATH_splitted;
+	int ret;
+
+	PATH = find_path(env);
+	PATH_splitted = split_input(PATH + 5, ":");
+	ret = add_user_command(lineptr, PATH_splitted, count);
+	if (ret == 1)
+		return (1);
 	else
-		return(-1);
+		return (-1);
 }

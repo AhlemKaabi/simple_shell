@@ -2,6 +2,7 @@
 /**
  * split_input - function that splits string into array of string
  * @str: string being passed
+ * @Delimiters: to separeate the str by.
  * Return:	array that hold the strings splitted
  *			this splits based on defined delimiters
 */
