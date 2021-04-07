@@ -50,6 +50,7 @@ int main(int argc, char **argv, char **env)
 	char **cmd;
 	int int_mode = 5;
 	int is_builtin;
+	int is_path;
 	int status;
 	
 	(void)argv;
@@ -64,6 +65,11 @@ int main(int argc, char **argv, char **env)
 		}
 		getline(&lineptr, &n, stdin);
 		/* without this entering just a new line will trigger a segfault */
+		if (*lineptr == '\000')
+		{
+			printf("\n");
+			exit(0);
+		}
 		if (*lineptr != '\n')
 		{
 			cmd = split_input(lineptr," \t\r\n");
@@ -71,6 +77,13 @@ int main(int argc, char **argv, char **env)
 			is_builtin = check_builtins(cmd, env);
 			/* only fork and exec if the input is not a builtin command */
 			if (is_builtin == -1)
+			{
+				/* if the command is not builtin check the command in PATH */
+				is_path = check_path(lineptr, env);
+				
+			}
+			/* if the command is neither in builtin and can't be added to PATH */
+			if (is_path == -1 && is_builtin == -1)
 			{
 				status = _exec_me(cmd);
 			}
