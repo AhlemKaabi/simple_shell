@@ -12,7 +12,7 @@ void signal_handler(int sig)
 
 	if (sig == SIGINT)
 	{
-		printf("\n$ ");
+		write(1, "\n$ ", 4);
 		/* important never remove */
 		er = fflush(stdout);
 		if (er != 0)
@@ -35,7 +35,12 @@ int _exec_me(char **cmd, char *program_name, int count)
 	{
 		if (execve(cmd[0], cmd, NULL) == -1)
 		{
-			printf("%s: %d: %s: not found\n", program_name, count, cmd[0]);
+			write(1, program_name, _strlen(program_name));
+			write(1, ": ", 2);
+			_putchar(count + '0');
+			write(1, ": ", 2);
+			write(1, cmd[0], _strlen(cmd[0]));
+			write(1, ": not found\n", 13);
 			exit(127);
 		}
 	}
@@ -68,14 +73,14 @@ int main(int argc, char **argv, char **env)
 		int_mode = isatty(STDIN_FILENO);
 		if (int_mode == 1)
 		{
-			printf("$ ");
+			write(1, "$ ", 2);
 		}
 		getline(&lineptr, &n, stdin);
 		count++;
 		/* without this entering just a new line will trigger a segfault */
 		if (*lineptr == '\000')
 		{
-			printf("\n");
+			write(1, "\n", 2);
 			exit(0);
 		}
 		if (*lineptr != '\n')
