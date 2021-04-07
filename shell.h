@@ -13,14 +13,14 @@ int calc_len(char *str);
 char **split_input(char *str, char *Delimiters);
 int check_builtins(char **command, char **envp);
 void _print_env(char **env);
-int _exec_me(char **cmd);
+int _exec_me(char **cmd, char *program_name, int count);
 void signal_handler(int sig);
 /*PATH*/
 char *find_path(char **env);
 char *memory_work(char *directories, char *command);
-int add_user_command(char *cmd_line, char **_path_splitted);
+int add_user_command(char *cmd_line, char **_path_splitted, int count);
 int check_command_line(char **command_line_splitted);
-int check_path(char *lineptr, char **env);
+int check_path(char *lineptr, char **env, int count);
 
 /* string manipulation functions */
 int _strncmp(char *s1, char *s2);
