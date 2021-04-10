@@ -1,4 +1,0 @@
-fix _putchar for count > 10!
-memory allocation
-_realloc function
-when file doesn't exists error message is wrong
