@@ -7,19 +7,31 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <signal.h>
+#include <linux/limits.h>
+#include <fcntl.h>
 #define SUCCESS 1
 #define FAILURE -1
 extern char **environ;
 
 /* function related to built-ins */
-int check_builtins(char **command, char *input);
+int check_builtins(char **command, char *input, int count);
 void _print_env(void);
+void cd_function(char **cmd, int count);
+void cd_error(int count , char *Dir);
+void help(char **cmd);
+ssize_t read_textfile(const char *filename, size_t letters);
+void handle_exit(char **command, char *input);
 
 /*helper functions */
 char *find_path();
 void free_array(char **array);
 unsigned int _strlen(char *s);
 int _strncmp(char *s1, char *s2);
+char *_getenv(char *env);
+void print_number(int n);
+int _putchar(char c);
+char *_strdup(char *duplicate);
+
 
 /* parsing functions */
 char *generate_command(char *directory, char *command);

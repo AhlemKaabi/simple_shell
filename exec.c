@@ -13,7 +13,12 @@ int _exec_me(char *program, char **command_splitted, char *input, int count)
 	{
 		if (execve(program, command_splitted, NULL) == -1)
 		{
-			printf("sh: %d: %s: not found\n", count, program);
+			write(1, "hsh: ", 5);
+			print_number(count);
+			write(1, ": ", 2);
+			write(1, command_splitted[0], _strlen(command_splitted[0]));
+			write(1, ": not found\n", 13);
+			/*printf("sh: %d: %s: not found\n", count, program);*/
 			free(input);
 			free_array(command_splitted);
 			exit(127);

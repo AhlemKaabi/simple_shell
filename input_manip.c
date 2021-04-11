@@ -14,8 +14,8 @@ char *generate_command(char *directory, char *command)
 	int total_len = 0;
 	char *final_cmd = NULL;
 
-	command_len = strlen(command);
-	directory_len = strlen(directory);
+	command_len = _strlen(command);
+	directory_len = _strlen(directory);
 	total_len = directory_len + command_len + 2;
 	final_cmd = malloc(sizeof(char) * total_len);
 	if (final_cmd == NULL)
@@ -84,8 +84,8 @@ int check_path(char **command_splitted, int count)
 	char *program_path;
 	int executed = 0;
 
-	PATH = find_path();
-	PATH_splitted = split_input(PATH + 5, ":");
+	PATH = _getenv("PATH=");
+	PATH_splitted = split_input(PATH, ":");
 	program_path = add_user_command(command_splitted[0], PATH_splitted);
 	if (program_path != NULL)
 	{

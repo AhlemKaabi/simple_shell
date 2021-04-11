@@ -14,6 +14,15 @@ void _print_env(void)
 		i++;
 	}
 }
+void handle_exit(char **command, char *input)
+{
+	int number;
+	number = atoi(command[1]);
+	/* add is digit */
+	free_array(command);
+	free(input);
+	exit(number);
+}
 /**
  * check_builtins - check if the command is builtin
  * @command: user input splited
@@ -23,18 +32,42 @@ void _print_env(void)
  *			if the command is exit it will free input and command
  *
 **/
-int check_builtins(char **command, char *input)
+int check_builtins(char **command, char *input, int count)
 {
+	
 	if (_strncmp(command[0], "exit") == 0)
 	{
-		free_array(command);
-		free(input);
-		exit(0);
+		if (command[1] == NULL)
+		{
+			free_array(command);
+			free(input);
+			exit(0);
+		}
+		else
+		{
+			handle_exit(command, input);
+		}
 	}
 	if (_strncmp(command[0], "env") == 0)
 	{
 		_print_env();
 		return (SUCCESS);
 	}
+	if(_strncmp(command[0], "cd") == 0)
+	{
+    	cd_function(command, count);
+    	return (SUCCESS);
+	}
+	if(_strncmp(command[0], "help") == 0)
+	{
+		if (command[1] == NULL)
+		{
+			read_textfile("help", 6400);
+		}
+		else
+			help(command);
+    	return (SUCCESS);
+	}
+
 	return (FAILURE);
 }

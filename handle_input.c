@@ -14,7 +14,7 @@ char **split_input(char *line, char *delim)
 	char *duplicated;
 	int buffsize = 1024;
 
-	duplicated = strdup(line);
+	duplicated = _strdup(line);
 	words_array = malloc(sizeof(char *) * buffsize);
 	if (words_array == NULL)
 	{
@@ -25,7 +25,7 @@ char **split_input(char *line, char *delim)
 	word = strtok(duplicated, delim);
 	for (i = 0; word != NULL; i++)
 	{
-		words_array[i] = strdup(word);
+		words_array[i] = _strdup(word);
 		word = strtok(NULL, delim);
 	}
 	words_array[i] = NULL;
@@ -67,6 +67,7 @@ void handle_input(char *input, int count)
 	int is_builtin;
 	int is_in_path;
 
+	
 	signal(SIGINT, signal_handler);
 	len = getline(&input, &size, stdin);
 
@@ -84,7 +85,7 @@ void handle_input(char *input, int count)
 			free(input);
 			return;
 		}
-		is_builtin = check_builtins(command_splitted, input);
+		is_builtin = check_builtins(command_splitted, input, count);
 		if (is_builtin == -1)
 		{
 			is_in_path = check_path(command_splitted, count);
