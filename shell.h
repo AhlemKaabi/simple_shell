@@ -20,7 +20,7 @@ void cd_function(char **cmd, int count);
 void cd_error(int count , char *Dir);
 void help(char **cmd);
 ssize_t read_textfile(const char *filename, size_t letters);
-void handle_exit(char **command, char *input);
+void handle_exit(char **command, char *input, int count);
 
 /*helper functions */
 char *find_path();
@@ -31,6 +31,8 @@ char *_getenv(char *env);
 void print_number(int n);
 int _putchar(char c);
 char *_strdup(char *duplicate);
+int _atoi(char *s);
+int _isdigit(int c);
 
 
 /* parsing functions */

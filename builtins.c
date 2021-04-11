@@ -10,18 +10,37 @@ void _print_env(void)
 	while (*(environ + i))
 	{
 		write(1, *(environ + i), _strlen(*(environ + i)));
-		write(1, "\n", 2);
+		write(1, "\n", 1);
 		i++;
 	}
 }
-void handle_exit(char **command, char *input)
+void handle_exit(char **command, char *input, int count)
 {
-	int number;
-	number = atoi(command[1]);
-	/* add is digit */
-	free_array(command);
-	free(input);
-	exit(number);
+	int number = 0;
+	unsigned int i;
+
+	i = 0;
+	while (_isdigit(command[1][i]))
+	{
+		i++;
+	}
+	if (i == _strlen(command[1]))
+	{
+		number = _atoi(command[1]);
+		free_array(command);
+		free(input);
+		exit(number);
+	}
+	else
+	{
+		write(1, "hsh: ", 5);
+		print_number(count);
+		write(1, ": ", 2);
+		write(1, command[0], _strlen(command[0]));
+		write(1, ": Illegal number: ", 18);
+		write(1, command[1], _strlen(command[1]));
+		write(1, "\n", 1);
+	}
 }
 /**
  * check_builtins - check if the command is builtin
@@ -45,7 +64,8 @@ int check_builtins(char **command, char *input, int count)
 		}
 		else
 		{
-			handle_exit(command, input);
+			handle_exit(command, input, count);
+			return (SUCCESS);
 		}
 	}
 	if (_strncmp(command[0], "env") == 0)
@@ -68,6 +88,5 @@ int check_builtins(char **command, char *input, int count)
 			help(command);
     	return (SUCCESS);
 	}
-
 	return (FAILURE);
 }
