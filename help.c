@@ -16,7 +16,7 @@
         }
         else if (_strncmp(cmd[1], "exit") == 0)
         {
-            read = read_textfile("exit", 00);
+            read = read_textfile("exit", 147);
             if (read == -1UL)
             {
                 perror("bultin command doesnt exists");
@@ -24,7 +24,7 @@
         }
         else if (_strncmp(cmd[1], "env") == 0)
         {
-            read = read_textfile("env", 00);
+            read = read_textfile("env", 999);
             if (read == -1UL)
             {
                 perror("bultin command doesnt exists");
@@ -32,7 +32,7 @@
         }
         else if (_strncmp(cmd[1], "help") == 0)
         {
-            read = read_textfile("help", 00);
+            read = read_textfile("help_help", 599);
             if (read == -1UL)
             {
               perror("bultin command doesnt exists");
@@ -61,7 +61,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
     int fd;
     size_t read_buf, printed;
     char *buf = malloc(sizeof(char) * letters);
- 
+
     if (buf == NULL)
     {
         return (FAILURE);

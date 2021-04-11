@@ -34,7 +34,7 @@ void handle_exit(char **command, char *input)
 **/
 int check_builtins(char **command, char *input, int count)
 {
-	
+
 	if (_strncmp(command[0], "exit") == 0)
 	{
 		if (command[1] == NULL)
@@ -62,7 +62,7 @@ int check_builtins(char **command, char *input, int count)
 	{
 		if (command[1] == NULL)
 		{
-			read_textfile("help", 6400);
+			read_textfile("help", 6368);
 		}
 		else
 			help(command);
