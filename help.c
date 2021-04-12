@@ -2,53 +2,34 @@
 
  void help(char **cmd)
  {
-    size_t read = 0;
-
     if (cmd[2] == NULL)
     {
         if (_strncmp(cmd[1], "cd") == 0)
-        {
-            read = read_textfile("cd", 1620);
-            if (read == -1UL)
-            {
-                perror("bultin command doesnt exists");
-            }
-        }
+            read_textfile("cd", 1620);
         else if (_strncmp(cmd[1], "exit") == 0)
-        {
-            read = read_textfile("exit", 147);
-            if (read == -1UL)
-            {
-                perror("bultin command doesnt exists");
-            }
-        }
+            read_textfile("exit", 147);
         else if (_strncmp(cmd[1], "env") == 0)
-        {
-            read = read_textfile("env", 999);
-            if (read == -1UL)
-            {
-                perror("bultin command doesnt exists");
-            }
-        }
+            read_textfile("env", 999);
         else if (_strncmp(cmd[1], "help") == 0)
-        {
-            read = read_textfile("help_help", 599);
-            if (read == -1UL)
-            {
-              perror("bultin command doesnt exists");
-            }
-        }
+            read_textfile("help_help", 599);
         else
         {
-            perror("bultin command doesnt exists");
+            write(1, "hsh: ", 5);
+			write(1, cmd[0], _strlen(cmd[0]));
+			write(1, ": no help topics match `", 24);
+            write(1, cmd[1], _strlen(cmd[1]));
+            write(1, "\'\n", 2);
         }
     }
     else
     {
-        perror("only one command allowed");
+        write(1, "hsh: ", 5);
+        write(1, cmd[0], _strlen(cmd[0]));
+        write(1, ": no help topics match `", 24);
+        write(1, cmd[1], _strlen(cmd[1]));
+        write(1, "\'\n", 2);
     }
  }
-
 /**
  * read_textfile - function that reads a text file and prints
  * it to the POSIX standard output.
