@@ -8,11 +8,10 @@ char *_getenv(char *env)
 {
 
     char **envi_var;
-
-    envi_var = environ;
-    size_t i; 
+	size_t i; 
     size_t j;
 
+    envi_var = environ;
     for (i = 0; envi_var[i] != NULL; i++)
     {
         for (j = 0; j < _strlen(env); j++)

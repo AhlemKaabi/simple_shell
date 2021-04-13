@@ -8,10 +8,10 @@
 int main(int argc, char **argv)
 {
 	char *input = NULL;
-	(void)argc;
-	(void)argv;
 	int count;
 
+	(void)argc;
+	(void)argv;
 	count = 1;
 	while (1)
 	{
