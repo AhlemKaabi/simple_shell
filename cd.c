@@ -44,7 +44,7 @@ void cd_function(char **cmd, int count)
 			else
 			{
 				old_path = getcwd(buf, sizeof(buf));
-				curr_path = cmd[1]; //if true!
+				curr_path = cmd[1];
 				path = chdir(curr_path);
 				if (path != 0)
 					cd_error(count, curr_path);
