@@ -17,7 +17,7 @@ extern char **environ;
 int check_builtins(char **command, char *input, int count);
 void _print_env(void);
 void cd_function(char **cmd, int count);
-void cd_error(int count , char *Dir);
+void cd_error(int count, char *Dir);
 void help(char **cmd);
 ssize_t read_textfile(const char *filename, size_t letters);
 void handle_exit(char **command, char *input, int count);
