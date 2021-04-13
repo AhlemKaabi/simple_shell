@@ -6,7 +6,7 @@
 */
 int _putchar(char c)
 {
-    return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 /**
  * _strdup - returns pointer to new mem alloc space which contains copy
@@ -65,7 +65,7 @@ int _atoi(char *s)
 	}
 	if (((s[start] < '0' && s[start] > '9')) && s[start] != '\0')
 	{
-			return (FAILURE);
+		return (FAILURE);
 	}
 	return (result);
 }

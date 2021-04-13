@@ -67,7 +67,6 @@ void handle_input(char *input, int count)
 	int is_builtin;
 	int is_in_path;
 
-	
 	signal(SIGINT, signal_handler);
 	len = getline(&input, &size, stdin);
 

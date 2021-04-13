@@ -14,6 +14,12 @@ void _print_env(void)
 		i++;
 	}
 }
+/**
+ * handle_exit - function that handle the exit with numbers
+ * @command: the input command
+ * @input: the input of the user
+ * @count: count the number of commands
+ */
 void handle_exit(char **command, char *input, int count)
 {
 	int number = 0;
@@ -46,6 +52,7 @@ void handle_exit(char **command, char *input, int count)
  * check_builtins - check if the command is builtin
  * @command: user input splited
  * @input: user command non splitted
+ * @count: number of commands
  * Return:	if the command is not a builtin return -1
  *			if the command is builtin return 1
  *			if the command is exit it will free input and command
@@ -73,12 +80,12 @@ int check_builtins(char **command, char *input, int count)
 		_print_env();
 		return (SUCCESS);
 	}
-	if(_strncmp(command[0], "cd") == 0)
+	if (_strncmp(command[0], "cd") == 0)
 	{
-    	cd_function(command, count);
-    	return (SUCCESS);
+		cd_function(command, count);
+		return (SUCCESS);
 	}
-	if(_strncmp(command[0], "help") == 0)
+	if (_strncmp(command[0], "help") == 0)
 	{
 		if (command[1] == NULL)
 		{
@@ -86,7 +93,7 @@ int check_builtins(char **command, char *input, int count)
 		}
 		else
 			help(command);
-    	return (SUCCESS);
+		return (SUCCESS);
 	}
 	return (FAILURE);
 }
