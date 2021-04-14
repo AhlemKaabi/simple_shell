@@ -1,0 +1,121 @@
+.TH SHELLDON 1 "April 2021" "Holberton School" "0x16.C - Simple Shell"
+.SH NAME
+.B SHELLDON\fR \- minimal UNIX command interpreter
+.SH SYNOPSIS
+.B .hsh\fR 
+.SH DESCRIPTION
+.B Shelldon\fR is a simple UNIX command language interpreter capable of executing commands Interactivly from \fBSTDIN\fR or piped from 
+a file.
+It emulates basic functionality of the \fBsh\fR shell.
+This man page borrows from the corresponding man pages sh(1) and dash(1).
+
+.B Invocation
+.in +2n
+\fBShelldon\fR can be invoked both interactively and non-interactively.
+If \fBShelldon\fR is invoked with standard input not connected to a terminal, it reads and executes received commands in order.
+
+If \fBShelldon\fR is invoked with standard input connected to a terminal, an \fIinteractive\fR shell is opened.
+When executing interactively, \fBShelldon\fR displays the prompt \fI$ \fR when it is ready to read a command.
+
+if command line arguments are supplied upon invocation, \fBShelldon\fR treats the first argument as a file from which to read commands.
+The supplied file should contain one command per line.
+.B Shelldon\fR runs each of the commands contained in the file in order before exiting.
+.in
+
+.B Environment
+.in +2n
+Upon invocation, \fBShelldon\fR receives and copies the environment of the parent process in which it was exeucted.
+This \fBenvironment\fR is an array of \fIname-value\fR strings describing variables in the format \fINAME=VALUE\fR.
+.in
+
+.B Command Execution
+.in +2n
+After receiving a command, \fBShelldon\fR split it into words using \fB" "\fR as a delimiter.
+The first word is considered the command and all remaining words are considered arguments to that command.
+.B Shelldon\fR then proceeds with the following actions:
+
+.RS
+1. the shell searches for the command in the list of shell builtins.
+If it exists the function related to the builtin is executed.
+.RE
+
+.RS
+2. if the first word is not a builtin, \fBShelldon\fR searches each element of the
+\fBPATH\fR environmental variable for a directory containing an executable file by that name.
+.RE
+
+.RS
+3. if nothing of the above searches was successful,
+the shell executes the named program with any remaining arguments given in a separate execution environment.
+.RE
+
+.B Exit Status
+.in +2n
+.B Shelldon\fR returns the exit status of the last command executed, unless a syntax error occurs, with zero indicating success and non-zero indicating failure.
+
+If a command is not found, the return status is 127; if a command is found but is not executable, the return status is 126.
+
+All builtins return zero on success and one or two on incorrect usage (indicated by a corresponding error message).
+.in
+
+.B Signals
+.in +2n
+While running in interactive mode, \fBShelldon\fR ignores the keyboard input \fBCtrl+c\fR.
+Alternatively, an input of end-of-file (\fBCtrl+d\fR) will exit the program.
+.in
+
+.B Shelldon Builtin Commands
+
+.B cd
+.RS
+Usage: cd [DIRECTORY]
+
+Changes the current directory of the process to \fBDIRECTORY\fR.
+
+If no argument is given, the command is interpreted as \fBcd $HOME\fR.
+
+.B exit
+.RS
+Usage: \fBexit [STATUS]\fR
+
+Exits the shell.
+
+The \fBSTATUS\fR argument is the integer used to exit the shell.
+
+If no argument is given, the command is interpreted as \fBexit 0\fR.
+.RE
+
+.B env
+.RS
+Usage: \fBenv\fR
+
+Prints the current environment.
+.RE
+
+.B help
+.RS
+Usage: \fBhelp [builtin_command]\fR
+
+the help command will provide a list of available options to builtin commands
+
+if no argument is given, help will display all possible options
+.RS
+
+
+.SH SEE ALSO
+list of system calls allowed for this project
+
+access(2), chdir(2), execve(2), _exit(2), exit(3), fflush(3), fork(2), free(3), isatty(3), getcwd(3), malloc(3), open(2), read(2), sh(1), signal(2), stat(2), wait(2), write(2)
+
+.SH BUGS
+
+update the the env variable OLDPWD and PWD when using the CD command 
+
+
+
+.SH main project repo
+
+https://github.com/alaedine07/simple_shell
+
+.SH AUTHOR
+Ahlem Kaabi and Boufaden Alaedine
