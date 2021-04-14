@@ -133,13 +133,13 @@ man ./man_1_simple_shell
 update the env variable OLDPWD and PWD using the `cd` builtin command
 
 ### TO DOs
-* Handle variables replacement
-Handling the command seperator ;
-Handling && and || logical operators
-Handle the $? variable
-Handle the $$ variable
-Support the history feature
-Support the file input
+* Handling variables replacement
+* Handling the command seperator ;
+* Handling && and || logical operators
+* Handle the $? variable
+* Handle the $$ variable
+* Support the history feature
+* Support the file input
 
 
 ### Authors
