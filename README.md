@@ -11,20 +11,19 @@ Tests done in VirtualBox on [Ubuntu](https://atlas.hashicorp.com/ubuntu/boxes/tr
 
 ## Repo Contents
 
-|   ***File***    |  **Decription**                       |
+|   **File**    |  **Decription**                       |
 |---------------|---------------------------------------|
 |  `shell.h`	|  Header file: contains prototypes	|
 |  `main.c`	|  Main file				|
 |  `builtin.c` |  Functions to execute builtins|
-|  `exec.c` |  execute related functions	|
-|  `_error.c`	|  Functions to print error messages|
-|  `_exit.c`  |  Exit function	 |
-|  `_reaaloc.c`  | Helper function to re allocate memory   |
+|  `exec.c` |  Execute related functions	|
+|  `help.c`	| Functions to handle the help builtin |
+|  `string_manip.c`  |  Custom string manipulation functions  |
+|	`char_manip.c`	|	Custom character manipulation functions |
 |  `_strtok.c`	    |  Custom strtok function	|
-|  `helper_func.c`  | String helper functions	|
-|  `helper_func2.c  | More helper functions  |
+|  `helper_func.c`  |	Custom helper functions	|
 |  `path.c`  | Functions for handling the PATH  |
-|  `tokenizer.c  | Function to tokenize string  |
+|  `handle_input.c`  | Function to handle the command line input |
 
 ### How to Use
 Clone repo
