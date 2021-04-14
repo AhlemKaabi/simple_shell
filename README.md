@@ -1,4 +1,4 @@
-# Shell
+# HSH: Holberton Shell
 ### Description
 This project is a recreation of the command-line interpreter (shell).
 Functionally, this project  mirrors `sh` in a limited scope.
