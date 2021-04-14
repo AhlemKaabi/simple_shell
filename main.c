@@ -14,15 +14,12 @@ int main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	count = 1;
-	while (r)
+	/* if input is coming from shell then print the prompt */
+	if (isatty(STDIN_FILENO))
 	{
-
-		/* if input is coming from shell then print the prompt */
-		if (isatty(STDIN_FILENO))
-		{
-			printf("$ ");
-		}
-		r = handle_input(input, count++);
+		write(1, "$ ", 2);
 	}
+	/* call an infinite while loop */
+	r = handle_input(input, count);
 	return (r);
 }

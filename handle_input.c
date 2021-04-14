@@ -61,39 +61,37 @@ void signal_handler(int sig)
 **/
 int handle_input(char *input, int count)
 {
-	ssize_t len = 0;
 	size_t size = 0;
 	char **command_splitted;
 	int r = 0;
 
 	signal(SIGINT, signal_handler);
-	len = getline(&input, &size, stdin);
-
-	if (len == -1)
+	while (getline(&input, &size, stdin) != -1)
 	{
-		free(input);
-		exit(120);
-	}
-	else
-	{
-		command_splitted = split_input(input, " \t\r\n");
-		if (command_splitted[0] == NULL)
+		command_splitted = split_input(input, "\n \t\r");
+		if (command_splitted[0] != NULL)
 		{
-			free_array(command_splitted);
-			free(input);
-			return (0);
-		}
-		r = check_builtins(command_splitted, input, count);
-		/* -3 means that the command is not a builtin */
-		if (r == -3)
-		{
-			r = check_path(command_splitted, count);
+			r = check_builtins(command_splitted, input, count, r);
+			/* -3 means that the command is not a builtin */
 			if (r == -3)
 			{
-				r = _exec_me(command_splitted[0], command_splitted, input, count);
+				r = check_path(command_splitted, count);
+				/* -3 means that the command is not in path */
+				if (r == -3)
+				{
+					r = _exec_me(command_splitted[0], command_splitted, input, count);
+				}
 			}
 		}
 		free_array(command_splitted);
+		if (isatty(STDIN_FILENO))
+		{
+			write(1, "$ ", 2);
+		}
+	}
+	if (isatty(STDIN_FILENO))
+	{
+		write(1, "\n", 1);
 	}
 	free(input);
 	return (r);

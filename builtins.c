@@ -60,14 +60,14 @@ int handle_exit(char **command, char *input, int count)
  * @command: user input splited
  * @input: user command non splitted
  * @count: number of commands
+ * @r: return of the last function to use in case exit
  * Return:	if the command is not a builtin return -1
  *			if the command is builtin return 1
  *			if the command is exit it will free input and command
  *
 **/
-int check_builtins(char **command, char *input, int count)
+int check_builtins(char **command, char *input, int count, int r)
 {
-	int r = 0;
 
 	if (_strncmp(command[0], "exit") == 0)
 	{
@@ -75,7 +75,8 @@ int check_builtins(char **command, char *input, int count)
 		{
 			free_array(command);
 			free(input);
-			exit(0);
+			/* this need to return the previous command status */
+			exit(r);
 		}
 		else
 		{

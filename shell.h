@@ -9,12 +9,20 @@
 #include <signal.h>
 #include <linux/limits.h>
 #include <fcntl.h>
+/** 
+ * failure is returned if the command  
+ * exists in check builtin or check path
+**/ 
 #define SUCCESS 1
+/** 
+ * failure is returned if the command doesn't 
+ * exists in check builtin or check path
+**/ 
 #define FAILURE -3
 extern char **environ;
 
 /* function related to built-ins */
-int check_builtins(char **command, char *input, int count);
+int check_builtins(char **command, char *input, int count, int r);
 int _print_env(void);
 void cd_function(char **cmd, int count);
 void cd_error(int count, char *Dir);
@@ -33,7 +41,7 @@ int _putchar(char c);
 char *_strdup(char *duplicate);
 int _atoi(char *s);
 int _isdigit(int c);
-
+void print_error(int count, char **command_splitted);
 
 /* parsing functions */
 char *generate_command(char *directory, char *command);
