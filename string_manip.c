@@ -1,14 +1,5 @@
 #include "shell.h"
 /**
-* _putchar - function that prints a char.
-* @c: printed char
-* Return: success
-*/
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-/**
  * _strdup - returns pointer to new mem alloc space which contains copy
  * @duplicate: string to be duplicated
  * Return: a pointer to the new duplicated string
@@ -70,16 +61,38 @@ int _atoi(char *s)
 	return (result);
 }
 /**
- * _isdigit - return true if upper
- * @c: number one
- * Return: value
+ * _strncmp - compares two strings
+ * @s1: first string, of two, to be compared in length
+ * @s2: second string, of two, to be compared
+ * Return: 0 on success, anything else is a failure
  */
-int _isdigit(int c)
+int _strncmp(char *s1, char *s2)
 {
-	if ((c >= 48) && (c <= 57))
+	int i;
+
+	i = 0;
+	while (s1[i] == s2[i])
 	{
-		return (1);
+		if (s1[i] == '\0')
+		{
+			return (0);
+		}
+		i++;
 	}
-	else
-		return (0);
+	return (s1[i] - s2[i]);
+}
+/**
+ * _strlen - returns the length of a string
+ * @s: string to be measured
+ * Return: length of string
+ */
+unsigned int _strlen(char *s)
+{
+	unsigned int len;
+
+	len = 0;
+
+	for (len = 0; s[len]; len++)
+		;
+	return (len);
 }

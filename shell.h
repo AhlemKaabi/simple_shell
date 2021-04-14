@@ -9,15 +9,16 @@
 #include <signal.h>
 #include <linux/limits.h>
 #include <fcntl.h>
-/** 
- * failure is returned if the command  
+#include <stddef.h>
+/**
+ * failure is returned if the command
  * exists in check builtin or check path
-**/ 
+**/
 #define SUCCESS 1
-/** 
- * failure is returned if the command doesn't 
+/**
+ * failure is returned if the command doesn't
  * exists in check builtin or check path
-**/ 
+**/
 #define FAILURE -3
 extern char **environ;
 
@@ -28,22 +29,32 @@ void cd_function(char **cmd, int count);
 void cd_error(int count, char *Dir);
 void help(char **cmd);
 ssize_t read_textfile(const char *filename, size_t letters);
-int handle_exit(char **command, char *input, int count);
+int exit_builtin(char **command, char *input, int count);
 
-/*helper functions */
-char *find_path();
-void free_array(char **array);
+/* string manipulation */
 unsigned int _strlen(char *s);
 int _strncmp(char *s1, char *s2);
-char *_getenv(char *env);
-void print_number(int n);
-int _putchar(char c);
 char *_strdup(char *duplicate);
 int _atoi(char *s);
+
+/* char manipulation */
+int _putchar(char c);
 int _isdigit(int c);
+
+/* helper function */
+void print_number(int n);
+
+void free_array(char **array);
+
+char *_getenv(char *env);
+
 void print_error(int count, char **command_splitted);
 
-/* parsing functions */
+/* _strtok */
+char *_strtok(char *str, const char *delim);
+unsigned int is_delimeter(char c, const char *str);
+
+/* path manipulation functions */
 char *generate_command(char *directory, char *command);
 char *add_user_command(char *command, char **PATH_splitted);
 int check_path(char **command_splitted, int count);

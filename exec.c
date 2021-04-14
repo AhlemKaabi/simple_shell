@@ -1,5 +1,20 @@
 #include "shell.h"
 /**
+ * free_array - free an array of strings
+ * @array: array of strings
+ * Return: void
+**/
+void free_array(char **array)
+{
+	int i;
+
+	for (i = 0; array[i]; i++)
+	{
+		free(array[i]);
+	}
+	free(array);
+}
+/**
  * _exec_me - fork and execute
  * @program: program_path
  * @command_splitted: command_splitted

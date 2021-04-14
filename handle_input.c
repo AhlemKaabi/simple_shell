@@ -22,11 +22,11 @@ char **split_input(char *line, char *delim)
 		free_array(words_array);
 		exit(98);
 	}
-	word = strtok(duplicated, delim);
+	word = _strtok(duplicated, delim);
 	for (i = 0; word != NULL; i++)
 	{
 		words_array[i] = _strdup(word);
-		word = strtok(NULL, delim);
+		word = _strtok(NULL, delim);
 	}
 	words_array[i] = NULL;
 	free(duplicated);

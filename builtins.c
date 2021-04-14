@@ -20,13 +20,13 @@ int _print_env(void)
 	return (0);
 }
 /**
- * handle_exit - function that handle the exit with numbers
+ * exit_builtin - function that handle the exit with numbers
  * @command: the input command
  * @input: the input of the user
  * @count: count the number of commands
  * Return: depends on return
  */
-int handle_exit(char **command, char *input, int count)
+int exit_builtin(char **command, char *input, int count)
 {
 	int number = 0;
 	unsigned int i;
@@ -80,7 +80,7 @@ int check_builtins(char **command, char *input, int count, int r)
 		}
 		else
 		{
-			r = handle_exit(command, input, count);
+			r = exit_builtin(command, input, count);
 			return (r);
 		}
 	}
