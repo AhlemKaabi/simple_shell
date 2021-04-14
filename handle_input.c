@@ -72,7 +72,7 @@ int handle_input(char *input, int count)
 	if (len == -1)
 	{
 		free(input);
-		exit(127);
+		exit(120);
 	}
 	else
 	{

@@ -9,12 +9,12 @@ int main(int argc, char **argv)
 {
 	char *input = NULL;
 	int count;
-	int r = 0;
+	int r = 1;
 
 	(void)argc;
 	(void)argv;
 	count = 1;
-	while (1)
+	while (r)
 	{
 
 		/* if input is coming from shell then print the prompt */
