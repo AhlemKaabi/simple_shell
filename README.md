@@ -111,16 +111,17 @@ Below are some of the builtin commands used, for further information please refe
 man ./man_1_simple_shell
 ```
 #### Builtins:
-* `env` (prints environmental variables)
-* `exit` (exit program)
-* `pwd` (prints current working directory)
-* `help` (prints the --help)
+* `env` (Prints environmental variables)
+* `exit` (Exit program)
+* `pwd` (Prints current working directory)
+* `help [command]` (Prints the help for command)
 
 ### Function and System Calls Used
 `open`, `close`, `execve`, `exit`, `fork`, `free`, `getline`, `malloc`, `perror`, `wait`, `write`, `stat`, `isatty`, `signal`
 
 ## Notes
-This shell does not handle aliases, comments, variables or history.
+* This shell does not handle aliases, comments, variables or history.
+* This shell handle Ctrl+C: ./hsh do not quit when the user inputs ^C
 
 ### Authors
 *Ahlem Kaabi*
