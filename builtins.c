@@ -3,24 +3,30 @@
  * _print_env - print all the env variables
  * Return: void
 **/
-void _print_env(void)
+int _print_env(void)
 {
 	int i = 0;
 
+	if (!environ)
+	{
+		return (-1);
+	}
 	while (*(environ + i))
 	{
 		write(1, *(environ + i), _strlen(*(environ + i)));
 		write(1, "\n", 1);
 		i++;
 	}
+	return (0);
 }
 /**
  * handle_exit - function that handle the exit with numbers
  * @command: the input command
  * @input: the input of the user
  * @count: count the number of commands
+ * Return: depends on return
  */
-void handle_exit(char **command, char *input, int count)
+int handle_exit(char **command, char *input, int count)
 {
 	int number = 0;
 	unsigned int i;
@@ -46,6 +52,7 @@ void handle_exit(char **command, char *input, int count)
 		write(1, ": Illegal number: ", 18);
 		write(1, command[1], _strlen(command[1]));
 		write(1, "\n", 1);
+		return (2);
 	}
 }
 /**
@@ -60,6 +67,7 @@ void handle_exit(char **command, char *input, int count)
 **/
 int check_builtins(char **command, char *input, int count)
 {
+	int r = 0;
 
 	if (_strncmp(command[0], "exit") == 0)
 	{
@@ -71,14 +79,14 @@ int check_builtins(char **command, char *input, int count)
 		}
 		else
 		{
-			handle_exit(command, input, count);
-			return (SUCCESS);
+			r = handle_exit(command, input, count);
+			return (r);
 		}
 	}
 	if (_strncmp(command[0], "env") == 0)
 	{
-		_print_env();
-		return (SUCCESS);
+		r = _print_env();
+		return (r);
 	}
 	if (_strncmp(command[0], "cd") == 0)
 	{

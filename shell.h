@@ -10,17 +10,17 @@
 #include <linux/limits.h>
 #include <fcntl.h>
 #define SUCCESS 1
-#define FAILURE -1
+#define FAILURE -3
 extern char **environ;
 
 /* function related to built-ins */
 int check_builtins(char **command, char *input, int count);
-void _print_env(void);
+int _print_env(void);
 void cd_function(char **cmd, int count);
 void cd_error(int count, char *Dir);
 void help(char **cmd);
 ssize_t read_textfile(const char *filename, size_t letters);
-void handle_exit(char **command, char *input, int count);
+int handle_exit(char **command, char *input, int count);
 
 /*helper functions */
 char *find_path();
@@ -44,6 +44,6 @@ char **split_input(char *line, char *delim);
 /* main functions */
 int _exec_me(char *program, char **command_splitted, char *input, int count);
 void signal_handler(int sig);
-void handle_input(char *input, int count);
+int handle_input(char *input, int count);
 
 #endif

@@ -21,9 +21,10 @@ int _exec_me(char *program, char **command_splitted, char *input, int count)
 			/*printf("sh: %d: %s: not found\n", count, program);*/
 			free(input);
 			free_array(command_splitted);
-			exit(127);
+			exit(EXIT_FAILURE);
 		}
+		return (EXIT_SUCCESS);
 	}
 	wait(NULL);
-	return (SUCCESS);
+	return (0);
 }

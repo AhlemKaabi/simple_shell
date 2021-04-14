@@ -90,11 +90,11 @@ int check_path(char **command_splitted, int count)
 	if (program_path != NULL)
 	{
 		executed = _exec_me(program_path, command_splitted, NULL, count);
-		if (executed == 1)
+		if (executed == 0)
 		{
 			free(program_path);
 			free_array(PATH_splitted);
-			return (SUCCESS);
+			return (executed);
 		}
 	}
 	free(program_path);

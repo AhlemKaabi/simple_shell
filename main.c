@@ -9,6 +9,7 @@ int main(int argc, char **argv)
 {
 	char *input = NULL;
 	int count;
+	int r = 0;
 
 	(void)argc;
 	(void)argv;
@@ -21,7 +22,7 @@ int main(int argc, char **argv)
 		{
 			printf("$ ");
 		}
-		handle_input(input, count++);
+		r = handle_input(input, count++);
 	}
-	return (0);
+	return (r);
 }

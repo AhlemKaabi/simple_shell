@@ -57,15 +57,14 @@ void signal_handler(int sig)
  * handle_input - function that will get user input and perform checks
  * @input: string to store user input
  * @count: number of commands
- * Return No return
+ * Return: depends on r
 **/
-void handle_input(char *input, int count)
+int handle_input(char *input, int count)
 {
 	ssize_t len = 0;
 	size_t size = 0;
 	char **command_splitted;
-	int is_builtin;
-	int is_in_path;
+	int r = 0;
 
 	signal(SIGINT, signal_handler);
 	len = getline(&input, &size, stdin);
@@ -82,18 +81,20 @@ void handle_input(char *input, int count)
 		{
 			free_array(command_splitted);
 			free(input);
-			return;
+			return (0);
 		}
-		is_builtin = check_builtins(command_splitted, input, count);
-		if (is_builtin == -1)
+		r = check_builtins(command_splitted, input, count);
+		/* -3 means that the command is not a builtin */
+		if (r == -3)
 		{
-			is_in_path = check_path(command_splitted, count);
-			if (is_in_path == -1)
+			r = check_path(command_splitted, count);
+			if (r == -3)
 			{
-				_exec_me(command_splitted[0], command_splitted, input, count);
+				r = _exec_me(command_splitted[0], command_splitted, input, count);
 			}
 		}
 		free_array(command_splitted);
 	}
 	free(input);
+	return (r);
 }
