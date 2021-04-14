@@ -16,7 +16,7 @@ Tests done in VirtualBox on [Ubuntu](https://atlas.hashicorp.com/ubuntu/boxes/tr
 |  `shell.h`	|  Header file: contains prototypes	|
 |  `main.c`	|  Main file				|
 |  `builtin.c` |  Functions to execute builtins|
-|  `exec.c` |  Execute related functions	|
+|  `exec.c` |  Functions to handle the excution phase	|
 |  `help.c`	| Functions to handle the help builtin |
 |  `string_manip.c`  |  Custom string manipulation functions  |
 |	`char_manip.c`	|	Custom character manipulation functions |
