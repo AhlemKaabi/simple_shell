@@ -14,7 +14,7 @@ Tests done in VirtualBox on [Ubuntu](https://atlas.hashicorp.com/ubuntu/boxes/tr
 |   **File**    |  **Decription**                       |
 |---------------|---------------------------------------|
 |	`compile.sh`	|	Compile our simple shell	|
-|	`valtest.sh`	 |	Compile our simple shell using valgrind |
+|	`valtest.sh`	 |	Run using valgrind |
 |  `shell.h`	|  Header file: contains prototypes	|
 |  `main.c`	|  Main file	|
 |  `builtin.c` |  Functions to execute builtins|
@@ -126,7 +126,7 @@ man ./man_1_simple_shell
 `open`, `close`, `execve`, `exit`, `fork`, `free`, `getline`, `malloc`, `perror`, `wait`, `write`, `stat`, `isatty`, `signal`
 
 ## Notes
-* This shell does not handle aliases, comments, variables or history.
+* This shell does not handle aliases, variables or history.
 * This shell handle Ctrl+C: ./hsh do not quit when the user inputs ^C
 
 ### Bugs
