@@ -119,7 +119,7 @@ man ./man_1_simple_shell
 * `help [command]` (Prints the help for command)
 
 ### Function and System Calls Used
-`open`, `close`, `execve`, `exit`, `fork`, `free`, `getline`, `malloc`, `perror`, `wait`, `write`, `stat`, `isatty`, `signal`
+`open`, `close`, `execve`, `exit`, `fork`, `free`, `getline`, `malloc`, `perror`, `wait`, `waitpid`, `write`, `stat`, `isatty`, `signal`.
 
 ## Notes
 <<<<<<< HEAD
