@@ -1,20 +1,13 @@
 # Shell
 ### Description
-This project is a recreation of the command-line interpreter (shell).
-Functionally, this project  mirrors `sh` in a limited scope.
-### Synopsis
-This version of the shell has a collection of custom built-in commands along
-with the functionality of running scripts in the various paths on a given operating system.
-### Environment
-Our Shell has been tested on Ubuntu 14.05.5 LTS.
-Tests done in VirtualBox on [Ubuntu](https://atlas.hashicorp.com/ubuntu/boxes/trusty64) via [Vagrant](https://www.vagrantup.com/)(2.0.1)
+This project was written as part of the curriculum for Holberton School. It is a recreation of the command-line interpreter (shell). Functionally, this project  mirrors `sh` in a limited scope.
 
 ## Repo Contents
 
 |   **File**    |  **Decription**                       |
 |---------------|---------------------------------------|
 |	`compile.sh`	|	Compile our simple shell	|
-|	`valtest.sh`	 |	Compile our simple shell using valgrind |
+|	`valtest.sh`	 |	Run our simple shell using valgrind |
 |  `shell.h`	|  Header file: contains prototypes	|
 |  `main.c`	|  Main file	|
 |  `builtin.c` |  Functions to execute builtins|
@@ -119,7 +112,6 @@ man ./man_1_simple_shell
 #### Builtins:
 * `env` (Prints environmental variables)
 * `exit` (Exit program)
-* `pwd` (Prints current working directory)
 * `help [command]` (Prints the help for command)
 
 ### Function and System Calls Used
@@ -127,19 +119,20 @@ man ./man_1_simple_shell
 
 ## Notes
 * This shell does not handle aliases, comments, variables or history.
-* This shell handle Ctrl+C: ./hsh do not quit when the user inputs ^C
+* This shell handle Ctrl+C: ./hsh do not quit when the user inputs ^C.
+* This shell handle Ctrl+D: ./hsh do quit when the user input ^D.
 
 ### Bugs
-update the env variable OLDPWD and PWD using the `cd` builtin command
+Update the env variable OLDPWD and PWD using the `cd` builtin command.
 
 ### TO DOs
-* Handling variables replacement
-* Handling the command seperator ;
-* Handling && and || logical operators
-* Handle the $? variable
-* Handle the $$ variable
-* Support the history feature
-* Support the file input
+* Handling variables replacement.
+* Handling the command seperator ; .
+* Handling && and || logical operators.
+* Handle the $? variable.
+* Handle the $$ variable.
+* Support the history feature.
+* Support the file input.
 
 
 ### Authors
