@@ -10,6 +10,7 @@
 #include <linux/limits.h>
 #include <fcntl.h>
 #include <stddef.h>
+#include <errno.h>
 /**
  * failure is returned if the command
  * exists in check builtin or check path

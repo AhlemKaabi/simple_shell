@@ -24,9 +24,14 @@ void free_array(char **array)
 **/
 int _exec_me(char *program, char **command_splitted, char *input, int count)
 {
+	int wstatus;
+	pid_t pid;
+	int exit_status = 0;
+
 	if (access(program, X_OK) == 0)
 	{
-		if (fork() == 0)
+		pid = fork();
+		if (pid == 0)
 		{
 			if (execve(program, command_splitted, NULL) == -1)
 			{
@@ -36,9 +41,13 @@ int _exec_me(char *program, char **command_splitted, char *input, int count)
 				free_array(command_splitted);
 				exit(EXIT_FAILURE);
 			}
-		return (EXIT_SUCCESS);
 		}
-	wait(NULL);
+		waitpid(pid, &wstatus, 0);
+		if (WIFEXITED(wstatus))
+		{
+			exit_status = WEXITSTATUS(wstatus);
+			return (exit_status);
+		}
 	}
 	else
 	{
