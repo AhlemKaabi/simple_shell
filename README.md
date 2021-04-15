@@ -120,6 +120,7 @@ man ./man_1_simple_shell
 ## Notes
 * This shell does not handle aliases, variables or history.
 * This shell handle Ctrl+C: ./hsh do not quit when the user inputs ^C
+* This shell handle Ctrl+D: ./hsh do quit when the user inputs ^D
 
 ### Bugs
 Update the env variable OLDPWD and PWD using the `cd` builtin command.
