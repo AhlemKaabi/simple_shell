@@ -27,7 +27,7 @@ This project was written as part of the curriculum for Holberton School. It is a
 ### How to Use
 Clone repo
 ```
-git clone https://github.com/MitaliSengupta/simple_shell.git
+git clone https://github.com/alaedine07/simple_shell.git
 ```
 Change directory to simple_shell
 ```
