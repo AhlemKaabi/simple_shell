@@ -1,4 +1,4 @@
-# Shell
+# HSH: Holberton Shell
 ### Description
 This project was written as part of the curriculum for Holberton School. It is a recreation of the command-line interpreter (shell). Functionally, this project  mirrors `sh` in a limited scope.
 
@@ -7,7 +7,11 @@ This project was written as part of the curriculum for Holberton School. It is a
 |   **File**    |  **Decription**                       |
 |---------------|---------------------------------------|
 |	`compile.sh`	|	Compile our simple shell	|
+<<<<<<< HEAD
 |	`valtest.sh`	 |	Run our simple shell using valgrind |
+=======
+|	`valtest.sh`	 |	Run using valgrind |
+>>>>>>> 3f3b45a75832f2b4d1273ff7952e6f838e78385a
 |  `shell.h`	|  Header file: contains prototypes	|
 |  `main.c`	|  Main file	|
 |  `builtin.c` |  Functions to execute builtins|
@@ -118,9 +122,14 @@ man ./man_1_simple_shell
 `open`, `close`, `execve`, `exit`, `fork`, `free`, `getline`, `malloc`, `perror`, `wait`, `write`, `stat`, `isatty`, `signal`
 
 ## Notes
+<<<<<<< HEAD
 * This shell does not handle aliases, comments, variables or history.
 * This shell handle Ctrl+C: ./hsh do not quit when the user inputs ^C.
 * This shell handle Ctrl+D: ./hsh do quit when the user input ^D.
+=======
+* This shell does not handle aliases, variables or history.
+* This shell handle Ctrl+C: ./hsh do not quit when the user inputs ^C
+>>>>>>> 3f3b45a75832f2b4d1273ff7952e6f838e78385a
 
 ### Bugs
 Update the env variable OLDPWD and PWD using the `cd` builtin command.
