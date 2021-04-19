@@ -25,39 +25,43 @@ unsigned int is_delimeter(char c, const char *str)
 char *_strtok(char *str, const char *delim)
 {
 	static char *token;
-	static char *next;
+	static char *scan;
 	unsigned int i;
 
 	if (str != NULL)
-		next = str;
-	token = next;
-	if (token == NULL)
-		return (NULL);
-	for (i = 0; next[i] != '\0'; i++)
 	{
-		if (is_delimeter(next[i], delim) == 0)
-			break;
+		scan = str;
 	}
-	if (next[i] == '\0' || next[i] == '#')
+	if (scan == NULL)
 	{
-		next = NULL;
-		return (NULL);
+		return(NULL);
 	}
-	token = next + i;
-	next = token;
-	for (i = 0; next[i] != '\0'; i++)
+	while (is_delimeter(scan[0], delim) == 1) /* delimeter found! */
 	{
-		if (is_delimeter(next[i], delim) == 1)
-			break;
+		scan = scan + 1; /* move one step! */
 	}
-	if (next[i] == '\0')
-		next = NULL;
-	else
+	token = scan;
+	for (i = 0; scan[i] != '\0'; i++)
 	{
-		next[i] = '\0';
-		next = next + i + 1;
-		if (*next == '\0')
-			next = NULL;
+		if (scan[i] == '#') /* special check! */
+		{
+			scan = NULL;
+			return(NULL);
+		}
+		if (is_delimeter(scan[i], delim) == 0) /* no delimeter found! */
+		{
+			token[i] = scan[i];
+		}
+		else
+		{
+			/* toknize now ! */
+			token[i] ='\0';
+			/* hey scan pointer, prepare yourself to the next token! */
+			scan = scan + i + 1;
+			/* but first please return for me that token! */
+			return (token);
+		}
 	}
-	return (token);
+	scan = NULL;
+	return(token);
 }
